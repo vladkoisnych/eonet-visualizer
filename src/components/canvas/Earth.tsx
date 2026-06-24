@@ -6,16 +6,14 @@ import { useStore } from '../../store/useStore';
 
 function DynamicSun() {
   const sunRef = useRef<THREE.Group>(null);
-  const { isPlaying, isLoading, simTime } = useStore();
-  const activeTime = useRef(simTime);
+  const { isLoading, simTime } = useStore();
 
   useFrame(() => {
     if (isLoading || !sunRef.current) return;
-    if (isPlaying) activeTime.current = simTime;
 
     const oneYearInMs = 365 * 24 * 60 * 60 * 1000;
-    const t = (activeTime.current / oneYearInMs) * (Math.PI * 2);
-    const orbitDistance = 8;
+    const t = (simTime / oneYearInMs) * (Math.PI * 2);
+    const orbitDistance = 20;
     
     sunRef.current.position.x = Math.sin(t) * orbitDistance;
     sunRef.current.position.z = Math.cos(t) * orbitDistance;
@@ -24,8 +22,8 @@ function DynamicSun() {
   return (
     <group ref={sunRef}>
       <mesh>
-        <sphereGeometry args={[0.5, 32, 32]} />
-        <meshBasicMaterial color="#ffffee" />
+        <sphereGeometry args={[3, 32, 32]} />
+        <meshBasicMaterial color="#fadaab" />
       </mesh>
       <directionalLight intensity={2.5} />
     </group>
