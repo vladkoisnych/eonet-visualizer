@@ -1,6 +1,5 @@
 import { useStore } from '../../store/useStore';
 import { getCartesianCoordinates } from '../../utils/math';
-import * as THREE from 'three';
 
 export function Markers() {
   const events = useStore((state) => state.events);
