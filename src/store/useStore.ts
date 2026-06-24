@@ -32,7 +32,7 @@ const decodeHTMLEntities = (text: string) => {
 
 export const useStore = create<AppState>((set) => ({
   simTime: Date.now() - (180 * 24 * 60 * 60 * 1000),
-  timeMultiplier: 1,
+  timeMultiplier: 0.5,
   isPlaying: true,
   activeFilters: { wildfires: true, volcanoes: true, storms: true, earthquakes: true },
   events: [],
