@@ -132,15 +132,44 @@ const UIOverlay = () => {
         </div>
       </div>
 
-      <div className="ui-element" style={{ background: 'rgba(10, 10, 15, 0.9)', padding: '15px 30px', borderTop: '1px solid #333', display: 'flex', alignItems: 'center', gap: '20px' }}>
+      <div 
+        className="ui-element" 
+        style={{ 
+          background: 'rgba(10, 10, 15, 0.9)', 
+          padding: '15px', // Reduced padding for mobile
+          borderTop: '1px solid #333', 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: '15px',
+          flexWrap: 'wrap' // CRITICAL: Allows items to wrap to the next line on mobile
+        }}
+      >
         <button 
           onClick={() => setIsPlaying(!isPlaying)} 
-          style={{ background: isPlaying ? '#ff4444' : '#4ade80', color: 'black', border: 'none', padding: '8px 16px', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer' }}
+          style={{ 
+            background: isPlaying ? '#ff4444' : '#4ade80', 
+            color: 'black', 
+            border: 'none', 
+            padding: '8px 16px', 
+            borderRadius: '4px', 
+            fontWeight: 'bold', 
+            cursor: 'pointer' 
+          }}
         >
           {isPlaying ? 'Pause' : 'Play'}
         </button>
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '15px', color: 'white' }}>
-          <span style={{ fontFamily: 'monospace', minWidth: '120px' }}>
+        
+        <div 
+          style={{ 
+            flex: '1 1 200px',
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '10px', 
+            color: 'white',
+            flexWrap: 'wrap'
+          }}
+        >
+          <span style={{ fontFamily: 'monospace', minWidth: '100px' }}>
             {currentDate.toISOString().split('T')[0]}
           </span>
           <input 
@@ -152,13 +181,21 @@ const UIOverlay = () => {
               setIsPlaying(false);
               setSimTime(Number(e.target.value));
             }} 
-            style={{ flex: 1, cursor: 'pointer' }} 
+            style={{ flex: 1, cursor: 'pointer', minWidth: '150px' }} 
           />
         </div>
+        
         <select 
           value={timeMultiplier} 
           onChange={(e) => setTimeMultiplier(Number(e.target.value))} 
-          style={{ background: '#222', color: 'white', border: '1px solid #444', padding: '8px', borderRadius: '4px', cursor: 'pointer' }}
+          style={{ 
+            background: '#222', 
+            color: 'white', 
+            border: '1px solid #444', 
+            padding: '8px', 
+            borderRadius: '4px', 
+            cursor: 'pointer' 
+          }}
         >
           <option value={0.1}>Speed: 0.1x</option>
           <option value={0.5}>Speed: 0.5x</option>
